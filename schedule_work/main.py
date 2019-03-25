@@ -82,6 +82,7 @@ class mysql_operate:
             else:
                 try:
                     test.excute_sql(content)
+                    # time.sleep(23)
                     print(self.i, time.ctime())
                 except Exception as e:
                     print(self.i, e, time.ctime())
@@ -109,6 +110,14 @@ class mysql_operate:
         schedule.every().day.at("8:00").do(self.start_task)
         schedule.every().day.at("21:00").do(self.pause_task)
         schedule.every().day.at("10:00").do(self.import_task)
+        
+        # schedule.every().day.at("15:02").do(self.start_task)
+        # schedule.every().day.at("15:00").do(self.pause_task)
+        # schedule.every().day.at("15:04").do(self.import_task)
+        # schedule.every().day.at("15:07").do(self.pause_task)        
+        # schedule.every().day.at("15:09").do(self.start_task)
+        # schedule.every().day.at("15:11").do(self.import_task)
+        
         threading.Thread(target=self.import_task).start()
         while(True):
             schedule.run_pending()
